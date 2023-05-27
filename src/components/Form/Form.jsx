@@ -6,8 +6,10 @@ import {
   FormLeable,
   FormButtonSubmit,
 } from './Form.styled';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactSlice';
 
-const Form = ({ onSubmit }) => {
+const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -29,11 +31,11 @@ const Form = ({ onSubmit }) => {
         return;
     }
   };
-
+  const dispatch = useDispatch();
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    onSubmit(contacts);
+    dispatch(addContact(contacts));
 
     reset();
   };

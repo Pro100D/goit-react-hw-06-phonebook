@@ -24,3 +24,7 @@ export const FilterInput = styled.input`
     transition: background-color 250ms linear;
   }
 `;
+
+export const BlockLable = styled.div`
+  margin-bottom: 30px;
+`;

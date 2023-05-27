@@ -1,18 +1,25 @@
-import PropTypes from 'prop-types';
+import { Fiterlable, FilterInput, BlockLable } from './Filter.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { filtred } from 'redux/filterSlice';
 
-import { Fiterlable, FilterInput } from './Filter.styled';
+const Filter = () => {
+  const dispatch = useDispatch();
+  const selector = useSelector(state => state.filterValue);
 
-const Filter = ({ value, onChange }) => {
+  const filtarValue = evt => {
+    dispatch(filtred(evt.target.value));
+  };
+
   return (
-    <div>
+    <BlockLable>
       <Fiterlable htmlFor="filter">Find contacts by name</Fiterlable>
-      <FilterInput type="text" value={value} onChange={onChange} id="filter" />
-    </div>
+      <FilterInput
+        type="text"
+        value={selector}
+        onChange={filtarValue}
+        id="filter"
+      />
+    </BlockLable>
   );
 };
 export default Filter;
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
