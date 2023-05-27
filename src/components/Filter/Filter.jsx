@@ -1,13 +1,14 @@
 import { Fiterlable, FilterInput, BlockLable } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { filtred } from 'redux/filterSlice';
+import { filterSelector } from 'redux/selectors';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const selector = useSelector(state => state.filterValue);
+  const filter = useSelector(filterSelector);
 
-  const filtarValue = evt => {
-    dispatch(filtred(evt.target.value));
+  const filtarValue = ({ target }) => {
+    dispatch(filtred(target.value));
   };
 
   return (
@@ -15,7 +16,7 @@ const Filter = () => {
       <Fiterlable htmlFor="filter">Find contacts by name</Fiterlable>
       <FilterInput
         type="text"
-        value={selector}
+        value={filter}
         onChange={filtarValue}
         id="filter"
       />
